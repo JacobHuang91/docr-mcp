@@ -1,0 +1,32 @@
+name: "Strands Agents"
+description: "Strands Agents is a model-driven SDK for building AI agents, from simple assistants to complex autonomous workflows"
+parser: "strands"
+
+index:
+  source: "https://strandsagents.com/llms.txt"
+
+tools:
+  search_docs:
+    description: |
+      Search Strands Agents SDK documentation.
+
+      Strands Agents is a model-driven SDK for building AI agents with sessions,
+      tools, and workflows. Use this tool when the user asks about:
+      - Building AI agents with Strands
+      - Agent state and session management
+      - Creating and using tools (custom tools, MCP tools, executors)
+      - Agent prompts and structured output
+      - Model providers (Anthropic, OpenAI, AWS Bedrock, etc.)
+      - Agent plugins, skills, and steering
+      - Retry strategies and hooks
+      - Streaming and conversation management
+
+      Returns a list of relevant documentation pages with titles and URLs ranked by relevance.
+
+  fetch_doc:
+    description: |
+      Fetch full content from a Strands Agents documentation page.
+
+      Retrieves the complete markdown documentation and returns it formatted
+      for easy reading. Use this after search_docs to get detailed information
+      about a specific topic.

@@ -23,6 +23,9 @@ classifiers = [
 ]
 dependencies = [
     "fastmcp>=3.2.3",
+    "httpx>=0.27.0",
+    "pyyaml>=6.0",
+    "rank-bm25>=0.2.2",
 ]
 
 [project.scripts]
@@ -46,6 +49,9 @@ dev = [
 
 [tool.hatch.build]
 packages = ["src/docr_mcp"]
+include = [
+    "src/docr_mcp/config/*.yml",
+]
 
 [tool.ruff]
 line-length = 120

@@ -1,131 +1,78 @@
 # docr-mcp
 
-Universal MCP server for documentation. Provides LLMs with intelligent access to documentation from popular libraries, tools, cloud providers, and any software with public docs.
+**A framework for building MCP servers that give LLMs access to any documentation.**
 
-## Concept
+Give LLMs the ability to search and read documentation from any source - public or private, official or internal. Stop getting outdated answers. Start getting accurate information directly from current docs.
 
-**Problem**: LLMs need up-to-date documentation but can't efficiently search and fetch docs during conversations.
+[![Tests](https://github.com/JacobHuang91/docr-mcp/workflows/CI/badge.svg)](https://github.com/JacobHuang91/docr-mcp/actions)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Solution**: docr-mcp is an MCP server that:
-1. Indexes documentation using `llms.txt` (or fallback strategies)
-2. Searches docs using semantic/keyword algorithms (BM25 or similar)
-3. Fetches and returns relevant doc content to the LLM
+## Why docr-mcp?
 
-## Architecture
+**The Problem**: LLMs give you outdated answers based on their training data. They don't know about the latest API changes, new features, or the specific libraries and tools you use daily.
 
-### Per-Library Instances
-Instead of one massive server with all docs, docr-mcp runs **separate instances per library**:
+**The Solution**: docr-mcp provides a proven framework to connect any documentation to LLMs through MCP servers. Give your AI assistant real-time access to current documentation - from popular libraries to your internal tools.
 
-```bash
-# Add Twilio docs
-mcp add docr-mcp --library twilio
+**Key Features**:
+- **Universal framework** for any documentation site (public or private)
+- **Smart BM25 search** with code-aware tokenization and relevance ranking
+- **Full customization** - control parsing, indexing, search, and tool descriptions
+- **Production ready** - 31+ tests, secure by default, proper resource management
+- **Easy to extend** - YAML config + Python implementation to add any library
 
-# Add AWS docs separately
-mcp add docr-mcp --library aws
-```
+## Supported Documentation
 
-**Why?**
-- **Better search quality**: Smaller search space = more relevant results
-- **Clearer tool naming**: LLM sees `docr-twilio::search_docs` vs `docr-aws::search_docs`
-- **Efficient context usage**: Only load what's needed for the current project
-- **Follows MCP philosophy**: Focused, composable servers
+| Library                                      | Status    | Install Command (Claude Code)                                                             |
+| -------------------------------------------- | --------- | ----------------------------------------------------------------------------------------- |
+| [Strands Agents](https://strandsagents.com) | ✅ Active | `claude mcp add docr-mcp-strands -- uv --directory $(pwd) run docr-mcp --library strands` |
 
-### How It Works
-
-```
-┌─────────────┐
-│   LLM       │
-│  (Claude)   │
-└──────┬──────┘
-       │
-       │ "How do I send SMS with Twilio?"
-       ▼
-┌─────────────────────┐
-│ docr-twilio MCP     │
-│                     │
-│ 1. search_docs()    │◄─── Searches indexed llms.txt content
-│    └─> BM25 ranking │
-│                     │
-│ 2. fetch_doc()      │◄─── Fetches full doc content
-│    └─> HTML → MD    │
-└─────────────────────┘
-```
-
-### Configuration-Driven
-
-Each library has a config file:
-
-```yaml
-# config/twilio.yml
-name: "Twilio"
-llms_txt: "https://www.twilio.com/llms.txt"
-fallback: "sitemap"  # If llms.txt unavailable
-sitemap_url: "https://www.twilio.com/sitemap.xml"
-```
-
-## Tools Provided
-
-Each instance provides:
-
-- `search_docs(query, top_k)` - Search documentation pages
-- `fetch_doc(url)` - Fetch full documentation content
-- `get_server_info()` - Get server metadata
-
-## Roadmap
-
-### Phase 1 (Current)
-- [x] Basic MCP server structure
-- [ ] Command-line argument for `--library`
-- [ ] Library configuration system
-- [ ] llms.txt parsing and indexing
-- [ ] Basic BM25 search
-- [ ] HTML→Markdown content extraction
-
-### Phase 2
-- [ ] Persistent index (SQLite with FTS5)
-- [ ] Caching layer
-- [ ] Background indexing
-- [ ] Sitemap.xml fallback
-
-### Phase 3
-- [ ] Multi-version support (e.g., `/docs/v2.0/`)
-- [ ] Auto-discovery of new libraries
-- [ ] Code-aware tokenization
-- [ ] Rate limiting and robots.txt respect
+**Want to add a library?** See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## Installation
 
 ```bash
-# Install via uvx
-uvx docr-mcp --library twilio
-
-# Or install from source
+# Clone the repository
 git clone https://github.com/JacobHuang91/docr-mcp.git
 cd docr-mcp
+
+# Install dependencies
 uv sync
-uv run docr-mcp --library twilio
+
+# Add to your MCP client
+# Example for Claude Code:
+claude mcp add docr-mcp-strands -- \
+  uv --directory $(pwd) run docr-mcp --library strands
+
+# Restart your client to activate
 ```
 
-## Development
+## Usage
 
-```bash
-# Install dev dependencies
-uv sync --extra dev
+After installation, ask your AI assistant to search documentation:
 
-# Run tests
-uv run pytest
-
-# Format code
-uv run ruff format .
-
-# Lint
-uv run ruff check .
 ```
+Search Strands docs for "agent state"
+What is agent-loop in Strands?
+Show me how to use model providers in Strands
+```
+
+## How It Works
+
+```mermaid
+graph LR
+    A[Index Source] --> B[Build BM25 Index]
+    B --> C[Query]
+    C --> D[Search Index]
+    D --> E[Fetch Live Docs]
+    E --> F[LLM Response]
+```
+
+1. **Startup**: Fetch index source (llms.txt, sitemap) and build searchable BM25 index
+2. **Query**: Search pre-built index, then fetch live documentation from URLs
+3. **Search**: BM25 ranking with code-aware tokenization and field weighting
+
 
 ## License
 
 MIT
-
-## Contributing
-
-Contributions welcome! See [CLAUDE.md](CLAUDE.md) for development guidelines and architecture decisions.
