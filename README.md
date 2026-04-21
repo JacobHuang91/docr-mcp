@@ -23,29 +23,20 @@ Give LLMs the ability to search and read documentation from any source - public 
 
 ## Supported Documentation
 
-| Library                                      | Status    | Install Command (Claude Code)                                                             |
-| -------------------------------------------- | --------- | ----------------------------------------------------------------------------------------- |
-| [Strands Agents](https://strandsagents.com) | ✅ Active | `claude mcp add docr-mcp-strands -- uv --directory $(pwd) run docr-mcp --library strands` |
+| Library                                      | Status    | Install Command (Claude Code)                                              |
+| -------------------------------------------- | --------- | -------------------------------------------------------------------------- |
+| [Strands Agents](https://strandsagents.com) | ✅ Active | `claude mcp add docr-mcp-strands -- uvx docr-mcp --library strands` |
 
 **Want to add a library?** See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/JacobHuang91/docr-mcp.git
-cd docr-mcp
-
-# Install dependencies
-uv sync
-
-# Add to your MCP client
-# Example for Claude Code:
-claude mcp add docr-mcp-strands -- \
-  uv --directory $(pwd) run docr-mcp --library strands
-
-# Restart your client to activate
+# Add to Claude Code (for Strands Agents docs)
+claude mcp add docr-mcp-strands -- uvx docr-mcp --library strands
 ```
+
+**For contributors:** See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup.
 
 ## Usage
 
