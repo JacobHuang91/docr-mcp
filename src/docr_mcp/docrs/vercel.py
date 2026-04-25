@@ -272,7 +272,9 @@ class VercelDocr(BaseDocr):
         if first_line.startswith("# "):
             title = first_line[2:].strip()
 
-        return Document(url=url, content=content, metadata={"title": title, "source": "vercel", "format": content_format})
+        return Document(
+            url=url, content=content, metadata={"title": title, "source": "vercel", "format": content_format}
+        )
 
     def close(self):
         """Explicitly close HTTP client."""
