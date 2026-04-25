@@ -27,6 +27,7 @@ Give LLMs the ability to search and read documentation from any source - public 
 | -------------------------------------------- | --------- | -------------------------------------------------------------------- |
 | [Strands Agents](https://strandsagents.com) | ✅ Active | `claude mcp add docr-mcp-strands -- uvx docr-mcp --library strands` |
 | [Vercel](https://vercel.com)                 | ✅ Active | `claude mcp add docr-mcp-vercel -- uvx docr-mcp --library vercel`   |
+| [Twilio](https://twilio.com)                 | ✅ Active | `claude mcp add docr-mcp-twilio -- uvx docr-mcp --library twilio`   |
 
 **Want to add a library?** See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
@@ -40,6 +41,9 @@ claude mcp add docr-mcp-strands -- uvx docr-mcp --library strands
 
 # For Vercel documentation
 claude mcp add docr-mcp-vercel -- uvx docr-mcp --library vercel
+
+# For Twilio documentation
+claude mcp add docr-mcp-twilio -- uvx docr-mcp --library twilio
 ```
 
 **For contributors:** See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup.
