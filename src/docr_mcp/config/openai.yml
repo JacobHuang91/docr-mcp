@@ -1,0 +1,40 @@
+name: "OpenAI"
+description: "OpenAI platform documentation"
+parser: "openai"
+
+index:
+  source: "https://developers.openai.com/llms.txt"
+  timeout: 30
+
+tools:
+  search_docs:
+    description: |
+      Search OpenAI platform documentation.
+
+      OpenAI is an AI research and deployment company. Use this tool when the user asks about:
+      - OpenAI API (Chat Completions, Responses API, Assistants API)
+      - GPT models (GPT-5, GPT-4, o-series models)
+      - Agents SDK and Agent Builder
+      - Function calling and tool use
+      - Fine-tuning and model optimization
+      - Embeddings and vector search
+      - Image generation (DALL-E)
+      - Audio and speech (Whisper, TTS)
+      - Vision and multimodal capabilities
+      - Moderation and safety
+      - Batch API and async processing
+      - ChatGPT Apps and GPT Actions
+      - MCP servers for ChatGPT
+      - Cost optimization and token counting
+      - Deep research capabilities
+      - Realtime API
+      - Computer use and code interpreter tools
+
+      Returns a list of relevant documentation pages with titles and URLs ranked by relevance.
+
+  fetch_doc:
+    description: |
+      Fetch the full content of a specific OpenAI documentation page.
+
+      Provide a URL from search results to get the complete markdown or HTML content
+      of the documentation page. Use this after searching to read detailed information.

@@ -1,4 +1,4 @@
-.PHONY: help add-strands add-vercel add-twilio add-strands-local add-vercel-local add-twilio-local
+.PHONY: help add-strands add-vercel add-twilio add-openai add-strands-local add-vercel-local add-twilio-local add-openai-local
 
 PROJECT_DIR := $(shell pwd)
 
@@ -9,11 +9,13 @@ help:
 	@echo "  make add-strands           - Add Strands Agents documentation"
 	@echo "  make add-vercel            - Add Vercel documentation"
 	@echo "  make add-twilio            - Add Twilio documentation"
+	@echo "  make add-openai            - Add OpenAI documentation"
 	@echo ""
 	@echo "Development (local code):"
 	@echo "  make add-strands-local     - Add Strands with local development code"
 	@echo "  make add-vercel-local      - Add Vercel with local development code"
 	@echo "  make add-twilio-local      - Add Twilio with local development code"
+	@echo "  make add-openai-local      - Add OpenAI with local development code"
 
 add-strands:
 	@echo "Adding Strands Agents MCP server to Claude Code..."
@@ -45,3 +47,12 @@ add-twilio-local:
 	@claude mcp add docr-mcp-twilio-local -- uv --directory $(PROJECT_DIR) run docr-mcp --library twilio
 	@echo "✅ Done! Restart Claude Code to activate."
 
+add-openai:
+	@echo "Adding OpenAI MCP server to Claude Code..."
+	@claude mcp add docr-mcp-openai -- uvx docr-mcp --library openai
+	@echo "✅ Done! Restart Claude Code to activate."
+
+add-openai-local:
+	@echo "Adding OpenAI MCP server (local development)..."
+	@claude mcp add docr-mcp-openai-local -- uv --directory $(PROJECT_DIR) run docr-mcp --library openai
+	@echo "✅ Done! Restart Claude Code to activate."

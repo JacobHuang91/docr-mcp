@@ -1,44 +1,19 @@
 """Tests for search quality and BM25 algorithm effectiveness."""
 
-from pathlib import Path
-
 import pytest
 
 from docr_mcp.core.search import SearchIndex
 from docr_mcp.docrs.strands import StrandsDocr
 from docr_mcp.models import IndexConfig
 
-FIXTURES_DIR = Path(__file__).parent.parent.parent / "fixtures" / "strands"
 
-
-def load_fixture(filename: str) -> str:
-    """Load a test fixture file."""
-    with open(FIXTURES_DIR / filename, "r") as f:
-        return f.read()
-
-
-@pytest.fixture
+@pytest.fixture(scope="module")
 def strands_entries():
-    """Get parsed Strands entries for testing."""
+    """Fetch real Strands entries for testing search quality."""
     docr = StrandsDocr()
-
-    class MockResponse:
-        def __init__(self):
-            self.text = load_fixture("llms.txt")
-
-        def raise_for_status(self):
-            pass
-
-    class MockClient:
-        def get(self, url):
-            return MockResponse()
-
-        def close(self):
-            pass
-
-    docr.client = MockClient()
-    config = IndexConfig(source="https://strandsagents.com/llms.txt")
-    return docr.fetch_index_entries(config)
+    with docr:
+        config = IndexConfig(source="https://strandsagents.com/llms.txt")
+        return docr.fetch_index_entries(config)
 
 
 class TestBM25SearchQuality:

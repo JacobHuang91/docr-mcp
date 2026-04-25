@@ -34,5 +34,10 @@ def load_docr(config: LibraryConfig) -> BaseDocr:
 
         return TwilioDocr()
 
+    elif docr_name == "openai":
+        from .openai import OpenAIDocr
+
+        return OpenAIDocr()
+
     else:
-        raise ValueError(f"Unknown docr: {docr_name}. Available docrs: strands, vercel, twilio")
+        raise ValueError(f"Unknown docr: {docr_name}. Available docrs: strands, vercel, twilio, openai")

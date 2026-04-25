@@ -18,33 +18,19 @@ Give LLMs the ability to search and read documentation from any source - public 
 - **Universal framework** for any documentation site (public or private)
 - **Smart BM25 search** with code-aware tokenization and relevance ranking
 - **Full customization** - control parsing, indexing, search, and tool descriptions
-- **Production ready** - 31+ tests, secure by default, proper resource management
+- **Production ready** - 66 tests (unit + E2E), secure by default, proper resource management
 - **Easy to extend** - YAML config + Python implementation to add any library
 
 ## Supported Documentation
 
-| Library                                      | Status    | Install Command (Claude Code)                                        |
-| -------------------------------------------- | --------- | -------------------------------------------------------------------- |
-| [Strands Agents](https://strandsagents.com) | ✅ Active | `claude mcp add docr-mcp-strands -- uvx docr-mcp --library strands` |
-| [Vercel](https://vercel.com)                 | ✅ Active | `claude mcp add docr-mcp-vercel -- uvx docr-mcp --library vercel`   |
-| [Twilio](https://twilio.com)                 | ✅ Active | `claude mcp add docr-mcp-twilio -- uvx docr-mcp --library twilio`   |
+| Library                                      | Status    | Tests | Install Command (Claude Code)                                        |
+| -------------------------------------------- | --------- | ----- | -------------------------------------------------------------------- |
+| [Strands Agents](https://strandsagents.com) | ✅ Active | ![Test Strands](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-strands) | `claude mcp add docr-mcp-strands -- uvx docr-mcp --library strands` |
+| [Vercel](https://vercel.com)                 | ✅ Active | ![Test Vercel](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-vercel) | `claude mcp add docr-mcp-vercel -- uvx docr-mcp --library vercel`   |
+| [Twilio](https://twilio.com)                 | ✅ Active | ![Test Twilio](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-twilio) | `claude mcp add docr-mcp-twilio -- uvx docr-mcp --library twilio`   |
+| [OpenAI](https://openai.com)                 | ✅ Active | ![Test OpenAI](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-openai) | `claude mcp add docr-mcp-openai -- uvx docr-mcp --library openai`   |
 
 **Want to add a library?** See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-## Installation
-
-```bash
-# Add to Claude Code (choose the library you need)
-
-# For Strands Agents documentation
-claude mcp add docr-mcp-strands -- uvx docr-mcp --library strands
-
-# For Vercel documentation
-claude mcp add docr-mcp-vercel -- uvx docr-mcp --library vercel
-
-# For Twilio documentation
-claude mcp add docr-mcp-twilio -- uvx docr-mcp --library twilio
-```
 
 **For contributors:** See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup.
 

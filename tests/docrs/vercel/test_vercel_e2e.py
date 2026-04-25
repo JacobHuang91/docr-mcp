@@ -1,0 +1,36 @@
+"""End-to-end tests for Vercel docr."""
+
+import pytest
+
+from docr_mcp.core.search import SearchIndex
+from docr_mcp.docrs.vercel import VercelDocr
+from docr_mcp.models import IndexConfig
+
+
+class TestVercelE2E:
+    """E2E tests simulating real MCP workflow: question → search → fetch content."""
+
+    def test_deployment_workflow(self):
+        """Test full workflow: ask about deployment."""
+        query = "deployment"
+
+        docr = VercelDocr()
+        with docr:
+            config = IndexConfig(source="https://vercel.com/llms.txt")
+            docs = docr.fetch_index_entries(config)
+
+            search_index = SearchIndex(docs)
+            results = search_index.search(query, top_k=3)
+
+            assert len(results) > 0, "Should find deployment docs"
+
+            # Fetch top result
+            doc_url = results[0]["url"]
+            content = docr.fetch_content(doc_url)
+
+            assert len(content.content) > 0, "Should fetch content"
+            assert content.metadata["format"] in ["markdown", "html"]
+
+
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])
