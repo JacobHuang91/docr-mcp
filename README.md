@@ -23,17 +23,23 @@ Give LLMs the ability to search and read documentation from any source - public 
 
 ## Supported Documentation
 
-| Library                                      | Status    | Install Command (Claude Code)                                              |
-| -------------------------------------------- | --------- | -------------------------------------------------------------------------- |
+| Library                                      | Status    | Install Command (Claude Code)                                        |
+| -------------------------------------------- | --------- | -------------------------------------------------------------------- |
 | [Strands Agents](https://strandsagents.com) | ✅ Active | `claude mcp add docr-mcp-strands -- uvx docr-mcp --library strands` |
+| [Vercel](https://vercel.com)                 | ✅ Active | `claude mcp add docr-mcp-vercel -- uvx docr-mcp --library vercel`   |
 
 **Want to add a library?** See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## Installation
 
 ```bash
-# Add to Claude Code (for Strands Agents docs)
+# Add to Claude Code (choose the library you need)
+
+# For Strands Agents documentation
 claude mcp add docr-mcp-strands -- uvx docr-mcp --library strands
+
+# For Vercel documentation
+claude mcp add docr-mcp-vercel -- uvx docr-mcp --library vercel
 ```
 
 **For contributors:** See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup.
