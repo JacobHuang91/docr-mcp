@@ -24,5 +24,10 @@ def load_docr(config: LibraryConfig) -> BaseDocr:
 
         return StrandsDocr()
 
+    elif docr_name == "vercel":
+        from .vercel import VercelDocr
+
+        return VercelDocr()
+
     else:
-        raise ValueError(f"Unknown docr: {docr_name}. Available docrs: strands")
+        raise ValueError(f"Unknown docr: {docr_name}. Available docrs: strands, vercel")

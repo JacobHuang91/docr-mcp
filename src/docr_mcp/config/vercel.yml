@@ -1,0 +1,34 @@
+name: "Vercel"
+description: "Vercel is the AI Cloud - a unified platform for building, deploying, and scaling AI-powered applications"
+parser: "vercel"
+
+index:
+  source: "https://vercel.com/llms.txt"
+
+tools:
+  search_docs:
+    description: |
+      Search Vercel platform documentation.
+
+      Vercel is a cloud platform for deploying web applications and AI workloads. Use this tool when the user asks about:
+      - Deploying applications to Vercel
+      - Supported frameworks (Next.js, SvelteKit, Nuxt, Remix, Astro, Vite, etc.)
+      - Frontend and backend deployment
+      - Vercel Functions and compute options
+      - Build system and infrastructure
+      - Production deployment best practices
+      - CI/CD and deployment workflows
+      - Domain management and DNS
+      - Environment variables and secrets
+      - Vercel CLI and APIs
+      - Integration with frameworks and tools
+
+      Returns a list of relevant documentation pages with titles and URLs ranked by relevance.
+
+  fetch_doc:
+    description: |
+      Fetch full content from a Vercel documentation page.
+
+      Retrieves the complete documentation content and returns it formatted
+      for easy reading. Use this after search_docs to get detailed information
+      about a specific topic.
