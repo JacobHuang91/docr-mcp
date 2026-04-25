@@ -1,12 +1,22 @@
-# docr-mcp
+<p align="center">
+  <img src="logo.jpg" alt="docr-mcp" width="200"/>
+</p>
 
-**A framework for building MCP servers that give LLMs access to any documentation.**
+<h1 align="center">docr-mcp</h1>
 
-Give LLMs the ability to search and read documentation from any source - public or private, official or internal. Stop getting outdated answers. Start getting accurate information directly from current docs.
+<p align="center">
+  <strong>A framework for building MCP servers that give LLMs access to any documentation.</strong>
+</p>
 
-[![Tests](https://github.com/JacobHuang91/docr-mcp/workflows/CI/badge.svg)](https://github.com/JacobHuang91/docr-mcp/actions)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<p align="center">
+  Give LLMs the ability to search and read documentation from any source - public or private, official or internal. Stop getting outdated answers. Start getting accurate information directly from current docs.
+</p>
+
+<p align="center">
+  <a href="https://github.com/JacobHuang91/docr-mcp/actions"><img src="https://github.com/JacobHuang91/docr-mcp/workflows/CI/badge.svg" alt="Tests"></a>
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python 3.10+"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+</p>
 
 ## Why docr-mcp?
 
@@ -18,21 +28,21 @@ Give LLMs the ability to search and read documentation from any source - public 
 - **Universal framework** for any documentation site (public or private)
 - **Smart BM25 search** with code-aware tokenization and relevance ranking
 - **Full customization** - control parsing, indexing, search, and tool descriptions
-- **Production ready** - 66 tests (unit + E2E), secure by default, proper resource management
+- **Production ready** - 88 tests (unit + E2E), secure by default, proper resource management
 - **Easy to extend** - YAML config + Python implementation to add any library
 
 ## Supported Documentation
 
-| Library                                      | Status    | Tests | Install Command (Claude Code)                                        |
-| -------------------------------------------- | --------- | ----- | -------------------------------------------------------------------- |
-| [Strands Agents](https://strandsagents.com) | ✅ Active | ![Test Strands](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-strands) | `claude mcp add docr-mcp-strands -- uvx docr-mcp --library strands` |
-| [Vercel](https://vercel.com)                 | ✅ Active | ![Test Vercel](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-vercel) | `claude mcp add docr-mcp-vercel -- uvx docr-mcp --library vercel`   |
-| [Twilio](https://twilio.com)                 | ✅ Active | ![Test Twilio](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-twilio) | `claude mcp add docr-mcp-twilio -- uvx docr-mcp --library twilio`   |
-| [OpenAI](https://openai.com)                 | ✅ Active | ![Test OpenAI](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-openai) | `claude mcp add docr-mcp-openai -- uvx docr-mcp --library openai`   |
+| Library                                      | Status | Tests | Install Command (Claude Code)                                              |
+| -------------------------------------------- | ------ | ----- | -------------------------------------------------------------------------- |
+| [Strands Agents](https://strandsagents.com) | ✅     | ![Test Strands](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-strands) | `claude mcp add docr-mcp-strands -- uvx docr-mcp --library strands`       |
+| [Vercel](https://vercel.com)                 | ✅     | ![Test Vercel](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-vercel) | `claude mcp add docr-mcp-vercel -- uvx docr-mcp --library vercel`         |
+| [Twilio](https://twilio.com)                 | ✅     | ![Test Twilio](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-twilio) | `claude mcp add docr-mcp-twilio -- uvx docr-mcp --library twilio`         |
+| [OpenAI](https://openai.com)                 | ✅     | ![Test OpenAI](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-openai) | `claude mcp add docr-mcp-openai -- uvx docr-mcp --library openai`         |
+| [Stripe](https://stripe.com)                 | ✅     | ![Test Stripe](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-stripe) | `claude mcp add docr-mcp-stripe -- uvx docr-mcp --library stripe`         |
+| [Anthropic](https://anthropic.com)           | ✅     | ![Test Anthropic](https://github.com/JacobHuang91/docr-mcp/actions/workflows/code-format.yml/badge.svg?event=push&job=test-anthropic) | `claude mcp add docr-mcp-anthropic -- uvx docr-mcp --library anthropic` |
 
 **Want to add a library?** See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-**For contributors:** See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup.
 
 ## Usage
 

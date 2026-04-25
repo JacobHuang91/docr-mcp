@@ -1,0 +1,44 @@
+name: "Anthropic"
+description: "Anthropic Claude API and platform documentation"
+parser: "anthropic"
+
+index:
+  source: "https://platform.claude.com/llms.txt"
+  timeout: 30
+
+tools:
+  search_docs:
+    description: |
+      Search Anthropic Claude API and platform documentation.
+
+      Anthropic is the company behind Claude AI. Use this tool when the user asks about:
+      - Claude API (Messages API, Responses API)
+      - Claude models (Claude 4.6, Claude Sonnet, Claude Opus, Claude Haiku)
+      - Tool use and function calling
+      - Prompt engineering and prompting best practices
+      - Agent Skills and Managed Agents
+      - Extended thinking and adaptive thinking
+      - Prompt caching
+      - Citations and search results
+      - Batch processing
+      - Compaction and context editing
+      - Computer use tool
+      - Code execution tool
+      - MCP (Model Context Protocol) connector
+      - Files API and PDF support
+      - Embeddings
+      - Streaming and events
+      - Testing and evaluations
+      - Reducing hallucinations and jailbreaks
+      - Latency optimization
+      - Multilingual support
+      - Webhooks and integrations
+
+      Returns a list of relevant documentation pages with titles and URLs ranked by relevance.
+
+  fetch_doc:
+    description: |
+      Fetch the full content of a specific Anthropic documentation page.
+
+      Provide a URL from search results to get the complete markdown or HTML content
+      of the documentation page. Use this after searching to read detailed information.
