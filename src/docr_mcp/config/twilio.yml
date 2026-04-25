@@ -1,0 +1,38 @@
+name: "Twilio"
+description: "Twilio is a cloud communications platform for building SMS, Voice, Video, and Messaging applications"
+parser: "twilio"
+
+index:
+  source: "https://www.twilio.com/docs/llms.txt"
+
+tools:
+  search_docs:
+    description: |
+      Search Twilio platform documentation.
+
+      Twilio is a cloud communications platform. Use this tool when the user asks about:
+      - SMS messaging (sending/receiving text messages)
+      - Voice calls (making/receiving phone calls)
+      - Video communications
+      - WhatsApp Business API
+      - Twilio Flex (contact center platform)
+      - Twilio Verify (2FA and phone verification)
+      - Programmable Messaging
+      - Programmable Voice
+      - Twilio Functions (serverless)
+      - TwiML (Twilio Markup Language)
+      - Twilio APIs and SDKs
+      - Phone numbers and SIP trunking
+      - Conversations API
+      - SendGrid Email API
+      - Twilio CLI and tools
+
+      Returns a list of relevant documentation pages with titles and URLs ranked by relevance.
+
+  fetch_doc:
+    description: |
+      Fetch full content from a Twilio documentation page.
+
+      Retrieves the complete documentation content and returns it formatted
+      for easy reading. Use this after search_docs to get detailed information
+      about a specific topic.

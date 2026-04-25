@@ -29,5 +29,10 @@ def load_docr(config: LibraryConfig) -> BaseDocr:
 
         return VercelDocr()
 
+    elif docr_name == "twilio":
+        from .twilio import TwilioDocr
+
+        return TwilioDocr()
+
     else:
-        raise ValueError(f"Unknown docr: {docr_name}. Available docrs: strands, vercel")
+        raise ValueError(f"Unknown docr: {docr_name}. Available docrs: strands, vercel, twilio")
