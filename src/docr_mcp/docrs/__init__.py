@@ -39,5 +39,17 @@ def load_docr(config: LibraryConfig) -> BaseDocr:
 
         return OpenAIDocr()
 
+    elif docr_name == "stripe":
+        from .stripe import StripeDocr
+
+        return StripeDocr()
+
+    elif docr_name == "anthropic":
+        from .anthropic import AnthropicDocr
+
+        return AnthropicDocr()
+
     else:
-        raise ValueError(f"Unknown docr: {docr_name}. Available docrs: strands, vercel, twilio, openai")
+        raise ValueError(
+            f"Unknown docr: {docr_name}. Available docrs: strands, vercel, twilio, openai, stripe, anthropic"
+        )

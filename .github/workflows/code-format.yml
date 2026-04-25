@@ -79,6 +79,42 @@ jobs:
     - name: Run OpenAI tests
       run: uv run pytest tests/docrs/openai/ -v
 
+  test-stripe:
+    name: Test Stripe
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+    - name: Install dependencies
+      run: uv sync --extra dev
+    - name: Run Stripe tests
+      run: uv run pytest tests/docrs/stripe/ -v
+
+  test-anthropic:
+    name: Test Anthropic
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+    - name: Install dependencies
+      run: uv sync --extra dev
+    - name: Run Anthropic tests
+      run: uv run pytest tests/docrs/anthropic/ -v
+
   test-core:
     name: Test Core & Error Handling
     runs-on: ubuntu-latest
