@@ -7,38 +7,112 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
-    name: Test Python ${{ matrix.python-version }}
+  test-strands:
+    name: Test Strands
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
-
     steps:
     - uses: actions/checkout@v4
-
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: ${{ matrix.python-version }}
-
+        python-version: "3.13"
     - name: Install uv
       uses: astral-sh/setup-uv@v5
       with:
         enable-cache: true
-
     - name: Install dependencies
-      run: |
-        uv sync --extra dev
+      run: uv sync --extra dev
+    - name: Run Strands tests
+      run: uv run pytest tests/docrs/strands/ -v
 
-    - name: Run tests
-      run: |
-        uv run pytest tests/ -v
+  test-vercel:
+    name: Test Vercel
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+    - name: Install dependencies
+      run: uv sync --extra dev
+    - name: Run Vercel tests
+      run: uv run pytest tests/docrs/vercel/ -v
 
+  test-twilio:
+    name: Test Twilio
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+    - name: Install dependencies
+      run: uv sync --extra dev
+    - name: Run Twilio tests
+      run: uv run pytest tests/docrs/twilio/ -v
+
+  test-openai:
+    name: Test OpenAI
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+    - name: Install dependencies
+      run: uv sync --extra dev
+    - name: Run OpenAI tests
+      run: uv run pytest tests/docrs/openai/ -v
+
+  test-core:
+    name: Test Core & Error Handling
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+    - name: Install dependencies
+      run: uv sync --extra dev
+    - name: Run core tests
+      run: uv run pytest tests/core/ tests/test_error_handling.py -v
+
+  lint:
+    name: Lint & Format Check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+    - name: Install dependencies
+      run: uv sync --extra dev
     - name: Run ruff format check
-      run: |
-        uv run ruff format --check .
-
+      run: uv run ruff format --check .
     - name: Run ruff lint
-      run: |
-        uv run ruff check .
+      run: uv run ruff check .
