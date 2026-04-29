@@ -23,12 +23,31 @@ def load_config(library: str) -> LibraryConfig:
     """
     # Get config directory (relative to this file)
     config_dir = Path(__file__).parent.parent / "config"
-    config_file = config_dir / f"{library}.yml"
 
-    if not config_file.exists():
+    # Try public first, then authenticated
+    public_config = config_dir / "public" / f"{library}.yml"
+    authenticated_config = config_dir / "authenticated" / f"{library}.yml"
+
+    if public_config.exists():
+        config_file = public_config
+    elif authenticated_config.exists():
+        config_file = authenticated_config
+    else:
+        # List available configs from both directories
+        public_libs = (
+            [f.stem for f in (config_dir / "public").glob("*.yml") if not f.stem.endswith(".example")]
+            if (config_dir / "public").exists()
+            else []
+        )
+        authenticated_libs = (
+            [f.stem for f in (config_dir / "authenticated").glob("*.yml") if not f.stem.endswith(".example")]
+            if (config_dir / "authenticated").exists()
+            else []
+        )
+        all_libs = sorted(public_libs + authenticated_libs)
+
         raise FileNotFoundError(
-            f"Configuration file not found: {config_file}\n"
-            f"Available libraries: {', '.join([f.stem for f in config_dir.glob('*.yml')])}"
+            f"Configuration file not found: {library}.yml\nAvailable libraries: {', '.join(all_libs)}"
         )
 
     with open(config_file, "r") as f:

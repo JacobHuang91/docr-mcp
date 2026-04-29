@@ -55,6 +55,41 @@ claude mcp remove docr-mcp-{library}-local
 
 ---
 
+## Adding Authenticated Documentation
+
+If you need to access **private/internal documentation** that requires authentication:
+
+### Quick Setup (For Users)
+
+1. **Copy the example config:**
+   ```bash
+   cd config/authenticated/
+   cp cookie.example.yml my-internal-docs.yml
+   ```
+
+2. **Get your cookies** from browser DevTools (see [config/authenticated/README.md](src/docr_mcp/config/authenticated/README.md))
+
+3. **Update the config** with your cookies and domain:
+   ```yaml
+   parser: cookie
+   auth:
+     cookie: "session=abc; token=xyz"
+     allowed_domains: ["internal.mycompany.com"]
+   index:
+     source: "https://internal.mycompany.com/sitemap.xml"
+   ```
+
+4. **Run locally:**
+   ```bash
+   uv run docr-mcp --library my-internal-docs
+   ```
+
+**No code changes needed** - just create a YAML config file! The `cookie` docr handles all authentication.
+
+See [config/authenticated/README.md](src/docr_mcp/config/authenticated/README.md) for detailed instructions.
+
+---
+
 ## Adding a New Library
 
 ### Overview

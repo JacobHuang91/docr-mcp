@@ -1,6 +1,6 @@
 [project]
 name = "docr-mcp"
-version = "0.2.0"
+version = "0.3.0"
 description = "Universal MCP server for documentation with llms.txt support"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -26,6 +26,9 @@ dependencies = [
     "httpx>=0.27.0",
     "pyyaml>=6.0",
     "rank-bm25>=0.2.2",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=5.0.0",
+    "markdownify>=0.11.0",
 ]
 
 [project.scripts]
@@ -50,7 +53,9 @@ dev = [
 [tool.hatch.build]
 packages = ["src/docr_mcp"]
 include = [
-    "src/docr_mcp/config/*.yml",
+    "src/docr_mcp/config/public/*.yml",
+    "src/docr_mcp/config/authenticated/*.yml",
+    "src/docr_mcp/config/authenticated/README.md",
 ]
 
 [tool.ruff]

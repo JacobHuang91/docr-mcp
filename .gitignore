@@ -1,7 +1,6 @@
 build
 __pycache__*
 .coverage*
-.env
 .venv
 .mypy_cache
 .pytest_cache
@@ -14,3 +13,7 @@ venv/
 *.egg-info
 *.pyc
 .DS_Store
+
+# Authenticated documentation configs with real credentials
+src/docr_mcp/config/authenticated/*.yml
+!src/docr_mcp/config/authenticated/*.example.yml

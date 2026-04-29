@@ -3,7 +3,7 @@
 import pytest
 
 from docr_mcp.core.search import SearchIndex
-from docr_mcp.docrs.strands import StrandsDocr
+from docr_mcp.docrs.public.strands import StrandsDocr
 from docr_mcp.models import IndexConfig
 
 
