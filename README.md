@@ -46,6 +46,8 @@
 
 ## Usage
 
+### Public Documentation
+
 After installation, ask your AI assistant to search documentation:
 
 ```
@@ -53,6 +55,14 @@ Search Strands docs for "agent state"
 What is agent-loop in Strands?
 Show me how to use model providers in Strands
 ```
+
+### Authenticated Documentation (Private/Internal Docs)
+
+Need to access private or internal documentation behind authentication? docr-mcp supports cookie-based authentication for SSO-protected sites.
+
+Simply create a YAML config file with your cookies and domain - no code changes required.
+
+📖 **See the [Authenticated Docs Guide](src/docr_mcp/config/authenticated/README.md) for step-by-step instructions.**
 
 ## How It Works
 

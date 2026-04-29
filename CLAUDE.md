@@ -89,17 +89,23 @@ sitemap_url: "https://www.twilio.com/sitemap.xml"
 7. Test against real docs with MCP Inspector
 8. Submit PR
 
-### Adding Internal/Private Libraries (With Auth)
+### Adding Authenticated Libraries (With Auth)
+
+Authenticated documentation requires credentials (cookies, API keys, etc.). The `cookie` docr provides a reference implementation:
 
 1. Clone repo locally
-2. Create custom docr with auth logic: `src/docr_mcp/docrs/mycompany_internal.py`
-3. Override `_ensure_client()` to add auth headers
-4. Register docr in `docrs/__init__.py`
-5. Create config: `config/mycompany-internal.yml`
-6. Install locally: `uv pip install -e .`
-7. Configure credentials via environment variables
+2. Copy `config/authenticated/cookie.example.yml` to `config/authenticated/mysite.yml`
+3. Add your credentials directly in the YAML file:
+   ```yaml
+   auth:
+     cookie: "session=abc123; token=xyz"
+     allowed_domains:
+       - "internal-docs.example.com"
+   ```
+4. Install locally: `uv pip install -e .`
+5. Run: `uv run docr-mcp --library mysite`
 
-**We do NOT implement auth**. Users write their own auth logic in custom docrs.
+For other auth methods (bearer tokens, API keys), extend `BaseDocr` and override `_get_client_config()`. See `authenticated/cookie.py` for reference.
 
 ### Testing Strategy
 - **Functional tests**: 24 tests for parsing, search, and BM25 quality

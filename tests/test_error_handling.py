@@ -61,7 +61,7 @@ class TestURLValidation:
 
     def test_http_url_rejected(self):
         """Test that HTTP URLs are rejected."""
-        from docr_mcp.docrs.strands import StrandsDocr
+        from docr_mcp.docrs.public.strands import StrandsDocr
 
         docr = StrandsDocr()
         docr.client = type("MockClient", (), {})()  # Mock client
@@ -71,7 +71,7 @@ class TestURLValidation:
 
     def test_invalid_domain_rejected(self):
         """Test that invalid domains are rejected."""
-        from docr_mcp.docrs.strands import StrandsDocr
+        from docr_mcp.docrs.public.strands import StrandsDocr
 
         docr = StrandsDocr()
 
@@ -80,7 +80,7 @@ class TestURLValidation:
 
     def test_valid_url_accepted(self):
         """Test that valid URLs are accepted."""
-        from docr_mcp.docrs.strands import StrandsDocr
+        from docr_mcp.docrs.public.strands import StrandsDocr
 
         docr = StrandsDocr()
 

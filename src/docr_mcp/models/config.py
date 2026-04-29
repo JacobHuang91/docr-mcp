@@ -1,6 +1,6 @@
 """Configuration models."""
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -22,12 +22,22 @@ class ToolConfig(BaseModel):
     model_config = {"frozen": True}
 
 
+class AuthConfig(BaseModel):
+    """Configuration for authentication."""
+
+    cookie: Optional[str] = Field(default=None, description="Cookie string for authentication")
+    allowed_domains: Optional[List[str]] = Field(default=None, description="Allowed domains for security")
+
+    model_config = {"extra": "allow"}  # Allow additional auth methods in future
+
+
 class LibraryConfig(BaseModel):
     """Configuration for a documentation library."""
 
     name: str = Field(..., description="Library display name")
     description: str = Field(..., description="Brief description of the library")
     parser: str = Field(..., description="Docr name to use (e.g., 'strands', 'aws')")
+    auth: Optional[AuthConfig] = Field(default=None, description="Authentication configuration")
     index: IndexConfig = Field(..., description="Index configuration")
     tools: Optional[Dict[str, ToolConfig]] = Field(default=None, description="Tool configurations")
 

@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: uv sync --extra dev
     - name: Run Strands tests
-      run: uv run pytest tests/docrs/strands/ -v
+      run: uv run pytest tests/docrs/public/strands/ -v
 
   test-vercel:
     name: Test Vercel
@@ -41,7 +41,7 @@ jobs:
     - name: Install dependencies
       run: uv sync --extra dev
     - name: Run Vercel tests
-      run: uv run pytest tests/docrs/vercel/ -v
+      run: uv run pytest tests/docrs/public/vercel/ -v
 
   test-twilio:
     name: Test Twilio
@@ -59,7 +59,7 @@ jobs:
     - name: Install dependencies
       run: uv sync --extra dev
     - name: Run Twilio tests
-      run: uv run pytest tests/docrs/twilio/ -v
+      run: uv run pytest tests/docrs/public/twilio/ -v
 
   test-openai:
     name: Test OpenAI
@@ -77,7 +77,7 @@ jobs:
     - name: Install dependencies
       run: uv sync --extra dev
     - name: Run OpenAI tests
-      run: uv run pytest tests/docrs/openai/ -v
+      run: uv run pytest tests/docrs/public/openai/ -v
 
   test-stripe:
     name: Test Stripe
@@ -95,7 +95,7 @@ jobs:
     - name: Install dependencies
       run: uv sync --extra dev
     - name: Run Stripe tests
-      run: uv run pytest tests/docrs/stripe/ -v
+      run: uv run pytest tests/docrs/public/stripe/ -v
 
   test-anthropic:
     name: Test Anthropic
@@ -113,7 +113,7 @@ jobs:
     - name: Install dependencies
       run: uv sync --extra dev
     - name: Run Anthropic tests
-      run: uv run pytest tests/docrs/anthropic/ -v
+      run: uv run pytest tests/docrs/public/anthropic/ -v
 
   test-core:
     name: Test Core & Error Handling

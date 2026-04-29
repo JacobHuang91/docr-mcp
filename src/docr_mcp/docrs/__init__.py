@@ -19,37 +19,44 @@ def load_docr(config: LibraryConfig) -> BaseDocr:
     """
     docr_name = config.parser
 
+    # Public docrs
     if docr_name == "strands":
-        from .strands import StrandsDocr
+        from .public.strands import StrandsDocr
 
         return StrandsDocr()
 
     elif docr_name == "vercel":
-        from .vercel import VercelDocr
+        from .public.vercel import VercelDocr
 
         return VercelDocr()
 
     elif docr_name == "twilio":
-        from .twilio import TwilioDocr
+        from .public.twilio import TwilioDocr
 
         return TwilioDocr()
 
     elif docr_name == "openai":
-        from .openai import OpenAIDocr
+        from .public.openai import OpenAIDocr
 
         return OpenAIDocr()
 
     elif docr_name == "stripe":
-        from .stripe import StripeDocr
+        from .public.stripe import StripeDocr
 
         return StripeDocr()
 
     elif docr_name == "anthropic":
-        from .anthropic import AnthropicDocr
+        from .public.anthropic import AnthropicDocr
 
         return AnthropicDocr()
 
+    # Authenticated docrs (require authentication)
+    elif docr_name == "cookie":
+        from .authenticated.cookie import CookieDocr
+
+        return CookieDocr(auth_config=config.auth)
+
     else:
         raise ValueError(
-            f"Unknown docr: {docr_name}. Available docrs: strands, vercel, twilio, openai, stripe, anthropic"
+            f"Unknown docr: {docr_name}. Available docrs: strands, vercel, twilio, openai, stripe, anthropic, cookie"
         )

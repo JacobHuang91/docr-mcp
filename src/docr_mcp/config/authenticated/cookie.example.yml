@@ -1,0 +1,48 @@
+# Example configuration for cookie-based authentication
+#
+# This is a template for authenticated documentation that requires cookie-based authentication
+# (e.g., Okta SSO, session cookies, JWT cookies).
+#
+# To use this:
+# 1. Copy this file to a new config (e.g., mycompany-internal.yml)
+# 2. Update the values below with your actual URLs and credentials
+# 3. Run: docr-mcp --library mycompany-internal
+#
+# How to get your auth cookie:
+# 1. Open your browser and log in to the documentation site
+# 2. Open DevTools (F12 or right-click > Inspect)
+# 3. Go to Network tab
+# 4. Refresh the page
+# 5. Click on any request to your docs domain
+# 6. Look at Request Headers > Cookie
+# 7. Copy the relevant auth cookie (e.g., "session=abc123" or "auth-token=xyz")
+#
+# Note: Cookies may expire. If you get auth errors, refresh your cookie.
+
+name: "Internal Docs (Cookie Auth)"
+description: "Internal company documentation with cookie-based authentication"
+parser: cookie  # Uses CookieDocr
+
+# Authentication configuration
+auth:
+  cookie: "session_id=YOUR_SESSION_ID_HERE; auth_token=YOUR_AUTH_TOKEN_HERE"
+  allowed_domains:
+    - "internal-docs.example.com"
+    - "docs.example.com"  # Optional: add more domains if needed
+
+# Index source
+index:
+  source: "https://internal-docs.example.com/sitemap.xml"  # or llms.txt
+  timeout: 30  # Optional: HTTP timeout in seconds (default: 30)
+
+# Tool descriptions (optional - customize for your docs)
+tools:
+  search_docs:
+    description: |
+      Search internal documentation. Returns relevant pages with titles and URLs.
+      Use this to find documentation on specific features, APIs, or guides.
+
+  fetch_doc:
+    description: |
+      Fetch full content of an internal documentation page.
+      Use this after search_docs to get the complete documentation.
